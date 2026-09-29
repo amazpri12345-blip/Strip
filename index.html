@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><p class="eyebrow">COMMUNITY ESPORTS</p><h1>ENTER THE <span>ARENA</span></h1><p>Find a match, register with your player UID, and follow tournament updates.</p></section>
+<div class="section-head"><h2>Available Tournaments</h2><span>{{ tournaments|length }} listed</span></div>
+<div class="grid">{% for t in tournaments %}<article class="card"><div class="row"><span class="tag">{{ t.game_mode }}</span><span class="status">{{ t.status }}</span></div><h3>{{ t.title }}</h3><p class="muted">🗓 {{ t.match_time }}</p><p>🏆 Prize: {{ t.prize or '—' }}</p><p class="muted">👥 {{ t.player_count }} registered</p><a class="button" href="{{ url_for('tournament', tid=t.id) }}">View & Join</a></article>{% else %}<div class="empty">No tournaments yet. Admin can create the first match.</div>{% endfor %}</div>
+{% endblock %}
